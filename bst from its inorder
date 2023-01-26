@@ -1,0 +1,10 @@
+ TreeNode* treefromin(vector<int> &myvec, int l, int r){
+        if(l>r){return NULL;}
+        int mid=(l+r)/2;
+        
+        TreeNode* nodeptr = new TreeNode(myvec[mid]);
+        
+        nodeptr->left=treefromin(myvec,l,mid-1);
+        nodeptr->right=treefromin(myvec,mid+1,r);
+        return nodeptr;
+    }
