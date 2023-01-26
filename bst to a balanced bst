@@ -1,0 +1,23 @@
+void inorder(TreeNode* root,vector<int> &in){
+        if(root==NULL){return;}
+        else{inorder(root->left,in);in.push_back(root->val);inorder(root->right,in);return;}
+    }
+    
+    vector<int> inval(TreeNode*root){vector<int> vec;inorder(root,vec);return vec;}
+
+    TreeNode* treefromin(vector<int> &myvec, int l, int r){
+        if(l>r){return NULL;}
+        int mid=(l+r)/2;
+        
+        TreeNode* nodeptr = new TreeNode(myvec[mid]);
+        
+        nodeptr->left=treefromin(myvec,l,mid-1);
+        nodeptr->right=treefromin(myvec,mid+1,r);
+        return nodeptr;
+    }
+
+    TreeNode* balanceBST(TreeNode* root) {
+       vector<int> myvector=inval(root);
+       return treefromin(myvector,0,myvector.size()-1);
+        
+    }
