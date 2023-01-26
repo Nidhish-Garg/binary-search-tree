@@ -1,0 +1,6 @@
+    void inorder(TreeNode* root,vector<int> &in){
+        if(root==NULL){return;}
+        else{inorder(root->left,in);in.push_back(root->val);inorder(root->right,in);return;}
+    }
+    
+    vector<int> inval(TreeNode*root){vector<int> vec;inorder(root,vec);return vec;}
